@@ -13,8 +13,18 @@ engine = create_engine(
 
 def getFastestLaps(df):
     laps = {}
-    for colname, coldata in df.items(): 
-        laps[colname] = coldata.min().item()
+    for i in range(1, len(df.columns)):
+        colname = df.columns[i] 
+        coldata = df.iloc[:, i] 
+
+        coldata.sort_values()
+        fastest = -1.0
+        for time in coldata:
+            if(time > 0.0):
+                fastest = time 
+                break
+            
+        laps[colname] = fastest
     return laps
 
 lap_df = pd.read_csv("./COTA/race_1/laptimes.csv")
