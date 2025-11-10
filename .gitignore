@@ -1,0 +1,6 @@
+# Ignore telemetry files (size)
+COTA/race_1/R1_cota_telemetry_data.csv
+COTA/race_2/R2_cota_telemetry_data.csv
+
+# env
+.env
