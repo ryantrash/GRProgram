@@ -10,8 +10,8 @@ def convertTime(time_str):
     total_seconds = time_object.minute * 60 + time_object.second + time_object.microsecond / 1_000_000.0
     return total_seconds
 
-input_file = '/home/keith/Codebase/GRProgram/COTA/race_1/99_Best 10 Laps By Driver_Race 1_Anonymized.CSV'
-output_file ='/home/keith/Codebase/GRProgram/COTA/race_1/laptimes.csv'
+input_file =  input("Input desired file to read from: ")
+output_file = input("Input desired file to write to: ")
 
 with open(input_file, 'r', newline='' ) as infile:
     reader = csv.reader(infile, delimiter=";") 
