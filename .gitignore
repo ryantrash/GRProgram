@@ -4,3 +4,7 @@ COTA/race_2/R2_cota_telemetry_data.csv
 
 # env
 .env
+
+# pycache 
+__pycache__/
+*.pyc

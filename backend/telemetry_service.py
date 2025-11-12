@@ -1,7 +1,8 @@
-from .database import query
-from .data_processing import getFastestLaps, load_laptimes
+from database import query, engine
+from data_processing import getFastestLaps, load_laptimes
+import pandas as pd 
 
-def getTelemetryFor(target, lap, fastest):
+def getTelemetryFor(target, lap):
     lap_df = load_laptimes("./COTA/race_1/laptimes.csv")
     fastest = getFastestLaps(lap_df) 
 
@@ -12,3 +13,5 @@ def getTelemetryFor(target, lap, fastest):
 
     return target_df, fastest_df
 
+target_df, fastest_df = getTelemetryFor(13, 2)
+print(target_df.head(), fastest_df.head())
