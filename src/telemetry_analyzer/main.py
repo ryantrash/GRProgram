@@ -13,19 +13,26 @@ engine = create_engine(
 
 def getFastestLaps(df):
     laps = []
-    for i in range(1, len(df.columns)):
-        lap = df.columns[i] 
-        coldata = df.iloc[:, i] 
-        coldata.sort_values()
-        fastest = -1.0
-        for j in range(0, len(coldata)):
-            time = coldata.iloc[j].item()
-            car_id = coldata.index[i].item()
-            if time > 0.0:
-                laps.append([lap, car_id, time])
-                break 
+    for colname in df.columns[1:]:
+        valid_times = df[colname][df[colname] > 0]
+        if not valid_times.empty:
+            fastest_time = valid_times.min()
+            car_id = valid_times.idxmin()
+            laps.append((car_id, fastest_time))
     return laps
 
-lap_df = pd.read_csv("./COTA/race_1/laptimes.csv")
-fastestLaps = getFastestLaps(lap_df) 
-print(fastestLaps)
+
+def getTelemetry(target, lap):
+    lap_df = pd.read_csv("./COTA/race_1/laptimes.csv")
+    fastest = getFastestLaps(lap_df) 
+
+    query = "SELECT * FROM telemetry_data_cota WHERE normalized_id = %(id)s AND lap = %(lap)s"
+    target_df = pd.read_sql_query(query, engine, params={"id": str(target), "lap": str(lap)}) 
+    fastest_id = fastest[lap-1][0]
+    fastest_df = pd.read_sql_query(query, engine, params={"id": str(fastest_id), "lap": str(lap)})
+
+    return target_df, fastest_df
+    
+target_df, fastest_df = getTelemetry(15,3) 
+
+print(target_df.head(), fastest_df.head())
