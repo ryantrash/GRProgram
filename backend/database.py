@@ -10,6 +10,12 @@ engine = create_engine(
     database_url
 )
 
-def query(sql, params=None):
+def fetch_lap(id, lap, params = None):
     import pandas as pd
-    return pd.read_sql_query(sql, engine, params=params)
+    query = """
+    SELECT * 
+    FROM telemetry_data_cota 
+    WHERE normalized_id = %(id)s::TEXT
+    AND lap = %(lap)s
+    """
+    return pd.read_sql_query(query, engine, params={"id": str(id), "lap": lap})
