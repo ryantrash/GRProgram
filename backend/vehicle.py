@@ -17,22 +17,23 @@ class Vehicle:
                 self.speed.append(tEntry)
             elif tName == "pbrake_f":
                 self.brake.append(tEntry)
+                
+        self.angle = self.toSeconds(self.angle)
     
     def toSeconds(self, arr): 
-        by_seconds = [] 
+        by_seconds = {}
         count = 1
         vals = [arr[0][0]]
-        current_second = arr[0][1][14:19]
+        current_second = arr[0][1][14:18]
         
         for i in range(1, len(arr)):
             val = arr[i][1]
-            if current_second == val[14:19]: 
+            if current_second == val[14:18]: 
                 vals.append(arr[i][0])
             else: 
                 cur = arr[i][1] 
-                by_seconds.append(sum(vals)/len(vals))
+                by_seconds[i] = (round(sum(vals)/len(vals), 5))
                 vals = [arr[i][0]] 
-        
-        by_seconds.append(sum(vals)/len(vals))
-        
-        return by_seconds       
+    
+        by_seconds[len(by_seconds)] = (round(sum(vals)/len(vals), 5))
+        return by_seconds  
