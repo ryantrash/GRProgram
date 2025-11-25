@@ -1,6 +1,6 @@
-from database import fetch_lap
-from data_processing import getFastestLaps, load_laptimes
-from vehicle import Vehicle
+from .database import fetch_lap
+from .data_processing import getFastestLaps, load_laptimes
+from .vehicle import Vehicle
 import pandas as pd 
 
 class TelemetryService:
