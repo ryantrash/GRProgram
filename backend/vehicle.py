@@ -19,6 +19,10 @@ class Vehicle:
                 self.brake.append(tEntry)
                 
         self.angle = self.toSeconds(self.angle)
+        self.acc = self.toSeconds(self.acc)
+        self.speed = self.toSeconds(self.speed)
+        self.brake = self.toSeconds(self.brake)
+        
     
     def toSeconds(self, arr): 
         by_seconds = {}

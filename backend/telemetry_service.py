@@ -30,4 +30,6 @@ class TelemetryService:
         v_target = self.get_vehicle(driver_id, lap) 
         v_fastest = self.get_fastest_vehicle(lap)
         
+        
+        
         return v_target, v_fastest
