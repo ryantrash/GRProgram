@@ -1,6 +1,7 @@
 import tkinter as tk
+from tkinter import ttk
 
-class Inputs(tk.Frame): 
+class Inputs(ttk.Frame): 
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         
@@ -13,8 +14,8 @@ class Inputs(tk.Frame):
         
         self.parent = parent 
         
-        self.id_label = tk.Label(text="Driver ID: ") 
+        self.id_label = ttk.Label(text="Driver ID: ") 
         self.id_label.pack() 
         
-        self.id_dropdown = tk.OptionMenu(self, selected_id, *id_options)
+        self.id_dropdown = ttk.OptionMenu(self, selected_id, *id_options)
         self.id_dropdown.pack()
