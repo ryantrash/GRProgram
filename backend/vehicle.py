@@ -11,9 +11,9 @@ class Vehicle:
             tEntry = [row["telemetry_value"], row["meta_time"]] 
             if tName == "Steering_Angle":
                 self.angle.append(tEntry)
-            elif tName == "aps": 
+            elif tName == "ath": 
                 self.acc.append(tEntry)
-            elif tName == "Speed":
+            elif tName == "speed":
                 self.speed.append(tEntry)
             elif tName == "pbrake_f":
                 self.brake.append(tEntry)
